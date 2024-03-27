@@ -1,0 +1,53 @@
+import random
+
+class Carta:
+    def _init_(self, valor, naipe):
+        self.valor = valor
+        self.naipe = naipe
+
+    def _str_(self):
+        return f"{self.valor} de {self.naipe}"
+
+
+class Baralho:
+    def _init_(self):
+        self.cartas = []
+        for naipe in ['Espadas', 'Paus', 'Copas', 'Ouros']:
+            for valor in range(2, 15):
+                self.cartas.append(Carta(valor, naipe))
+
+    def embaralhar(self):
+        random.shuffle(self.cartas)
+
+    def distribuir_cartas(self, jogadores, cartas_por_jogador):
+        for jogador in jogadores:
+            for _ in range(cartas_por_jogador):
+                carta = self.cartas.pop()
+                jogador.receber_carta(carta)
+
+class Jogador:
+    def _init_(self, nome):
+        self.nome = nome
+        self.mao = []
+
+    def receber_carta(self, carta):
+        self.mao.append(carta)
+
+    def mostrar_cartas(self):
+        print(f"{self.nome} possui as seguintes cartas:")
+        for carta in self.mao:
+            print(f"  {carta}")
+
+def main():
+    baralho = Baralho()
+    baralho.embaralhar()
+
+    jogadores = [Jogador("Jogador 1"), Jogador("Jogador 2")]
+    cartas_por_jogador = 5
+    baralho.distribuir_cartas(jogadores, cartas_por_jogador)
+
+    for jogador in jogadores:
+        print(f"{jogador.nome}: {jogador.mostrar_cartas()}")
+
+if _name_ == "_main_":
+    main()
