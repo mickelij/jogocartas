@@ -1,6 +1,6 @@
 import random
 
-class Carta:
+class Carta:  #julia
     def _init_(self, valor, naipe):
         self.valor = valor
         self.naipe = naipe
@@ -9,7 +9,7 @@ class Carta:
         return f"{self.valor} de {self.naipe}"
 
 
-class Baralho:
+class Baralho:  #leticia
     def _init_(self):
         self.cartas = []
         for naipe in ['Espadas', 'Paus', 'Copas', 'Ouros']:
@@ -25,7 +25,7 @@ class Baralho:
                 carta = self.cartas.pop()
                 jogador.receber_carta(carta)
 
-class Jogador:
+class Jogador:  #maizaewil
     def _init_(self, nome):
         self.nome = nome
         self.mao = []
@@ -38,7 +38,7 @@ class Jogador:
         for carta in self.mao:
             print(f"  {carta}")
 
-def main():
+def main():  #mariana
     baralho = Baralho()
     baralho.embaralhar()
 
